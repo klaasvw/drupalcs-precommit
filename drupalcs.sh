@@ -9,17 +9,16 @@
 # - drush <http://drupal.org/project/drush>
 # - drupalcs <http://drupal.org/project/drupalcs>
 
-# An array of file extensions drupalcs should check.
-EXTENSIONS='php|txt|inc|info|test|profile|module|engine'
-
 # Stash the current changes so only the staged code is evaluated.
 git stash -q --keep-index
-# Fetch an overview of all staged files.
-files=$(git status --porcelain);
-# Loop over each staged file and check it with drupalcs.
-for staged_file in $files; do
-  echo $staged_file
+# Exit when one check fails.
+exit_status=0
+# Check each file in the staging area
+for result in $(git diff --cached --name-only); do
+  drush dcs $result
+  [ $? -ne 0 ] && exit_status=1
 done
-
 # Unstash the changes to go back to the current working tree.
 git stash pop -q
+
+exit $exit_status
