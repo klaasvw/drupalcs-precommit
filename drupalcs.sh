@@ -14,7 +14,7 @@ git stash -q --keep-index
 # Exit when one check fails.
 exit_status=0
 # Check each file in the staging area
-for result in $(git diff --cached --name-only); do
+for result in $(git diff --cached --name-only --diff-filter=AM); do
   drush dcs $result
   [ $? -ne 0 ] && exit_status=1
 done
