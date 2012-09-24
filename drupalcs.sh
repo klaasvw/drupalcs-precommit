@@ -14,7 +14,7 @@ git stash -q --keep-index
 exit_status=0
 # Check each file in the staging area
 for result in $(git diff --cached --name-only --diff-filter=AM); do
-  drush dcs $result
+  drush dcs --extensions=php,module,inc,install,test,profile,theme $result
   [ $? -ne 0 ] && exit_status=1
 done
 # Unstash the changes to go back to the current working tree.
