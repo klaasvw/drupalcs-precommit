@@ -3,8 +3,7 @@
 # Git precommit hook for validating drupal coding standards.
 #
 # This script will validate all staged files against the drupal coding
-# standards. In order to use these scripts you need to have the following
-#
+# standards. In order to use this script you need to have the following
 # software installed:
 # - drush <http://drupal.org/project/drush>
 # - drupalcs <http://drupal.org/project/drupalcs>
