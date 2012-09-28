@@ -40,5 +40,4 @@ done
 # Unstash the changes to go back to the current working tree.
 git stash pop -q
 
-exit 1;
-#exit $RETVAL
+exit $RETVAL
